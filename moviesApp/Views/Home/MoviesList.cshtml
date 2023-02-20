@@ -1,0 +1,59 @@
+
+@{
+    ViewData["Title"] = "All Movies";
+}
+
+@model List<Movie>
+
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold">
+        <tr>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">category</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">title</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">year</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">director</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">rating</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">edited</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">lent to</button>
+            </th>
+            <th>notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mov in Model) {
+            <tr>
+                <td>@mov.category.name</td>
+                <td>@mov.title</td>
+                <td>@mov.year</td>
+                <td>@mov.director</td>
+                <td>@mov.rating.term</td>
+                <td>@mov.edited</td>
+                <td>@mov.lentTo</td>
+                <td>@mov.notes</td>
+                <td>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-movieID="@mov.movieID">
+                        <button class="btn btn-primary">edit</button>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-movieID="@mov.movieID">
+                        <button class="btn btn-secondary">delete</button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

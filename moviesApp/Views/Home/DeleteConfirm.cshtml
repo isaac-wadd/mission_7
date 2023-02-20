@@ -1,0 +1,22 @@
+
+@{
+    ViewData["Title"] = "Delete Confirmation - " + Model.title;
+}
+
+@model moviesApp.Models.Movie
+
+<div class="text-center">
+    <h4>Are you SURE you want to delete '@Model.title' from the database?</h4>
+    <br>
+    <h5>(this action cannot be undone)</h5>
+    <form method="post" asp-controller="Home" asp-action="Delete" class="text-center">
+        <br>
+        <button class="btn btn-secondary" type="submit">DELETE</button>
+        <br>
+        <input type="hidden" asp-for="movieID">
+    </form>
+    <br>
+    <a asp-controller="Home" asp-action="MoviesList">
+        <button class="btn btn-primary">CANCEL</button>
+    </a>
+</div>

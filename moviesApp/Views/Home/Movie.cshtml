@@ -1,0 +1,76 @@
+
+@{
+    ViewData["Title"] = ViewBag.movieViewCtxt + " Movie";
+}
+
+@model moviesApp.Models.Movie
+
+<h2>@ViewBag.movieViewCtxt Movie</h2>
+
+<div>
+    <form method="post" asp-controller="Home" asp-action="@ViewBag.movieFormCtxt">
+        <br>
+        <i><div asp-validation-summary="All" class="validation"></div></i>
+        <br>
+        <label asp-for="categoryID">Category</label>
+        <br>
+        <select name="categoryID" id="categoryID" asp-for="categoryID">
+            <option value="">- select a category -</option>
+            @foreach (Category c in ViewBag.categories) {
+                <option value="@c.categoryID">@c.name</option>
+            }
+        </select>
+        <br>
+        <br>
+        <label asp-for="title">Title</label>
+        <br>
+        <input type="text" asp-for="title">
+        <br>
+        <br>
+        <label asp-for="year">Release Year</label>
+        <br>
+        <input type="number" name="year" id="year" asp-for="year" max="2023" min="1900">
+        <br>
+        <br>
+        <label asp-for="director">Director</label>
+        <br>
+        <input type="text" asp-for="director">
+        <br>
+        <br>
+        <label asp-for="rating">Rating</label>
+        <br>
+        <select name="ratingID" id="ratingID" asp-for="ratingID">
+            <option value="">- select a rating -</option>
+            @foreach (Rating r in ViewBag.ratings) {
+                <option value="@r.ratingID">@r.term</option>
+            }
+        </select>
+        <br>
+        <br>
+        <label asp-for="edited">Edited</label>
+        <br>
+        true
+        <input type="radio" name="edited" value="true" asp-for="edited">
+        <br>
+        false
+        <input type="radio" name="edited" value="false" asp-for="edited">
+        <br>
+        <br>
+        <label asp-for="lentTo">Lent To</label>
+        <br>
+        <input type="text" name="lentTo" id="lentTo" asp-for="lentTo">
+        <br>
+        <br>
+        <label asp-for="notes">Notes</label>
+        <br>
+        <textarea name="notes" id="notes" asp-for="notes" cols="30" rows="4" maxlength="25" placeholder="notes go here"></textarea>
+        <br>
+        <div>
+            <span id="notesChars">25</span>
+            characters left
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+    </form>
+</div>
